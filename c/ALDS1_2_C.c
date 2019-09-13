@@ -24,22 +24,18 @@ int main(int argc, char const* argv[])
         cards[i].mark = card[0];
         cards[i].num = card[1] - '0';
     }
+    Card *cards2 = (Card *)malloc(N * sizeof(Card));
+    memcpy(cards2, cards, N * sizeof(Card));
 
-    Card *bubblecards = (Card *)malloc(N * sizeof(Card));
-    memcpy(bubblecards, cards, N * sizeof(Card));
-    bubbleSort(bubblecards, N);
-    printArray(bubblecards, N);
-    isStable(bubblecards, cards, N);
-    free(bubblecards);
+    bubbleSort(cards, N);
+    printArray(cards, N);
+    printf("Stable\n");
 
-    Card *selectioncards = (Card *)malloc(N * sizeof(Card));
-    memcpy(selectioncards, cards, N * sizeof(Card));
-    selectionSort(selectioncards, N);
-    printArray(selectioncards, N);
-    isStable(selectioncards, cards, N);
-    free(selectioncards);
+    selectionSort(cards2, N);
+    printArray(cards2, N);
+    isStable(cards, cards2, N);
 
-    free(cards);
+    free(cards); free(cards2);
 
     return 0;
 }
@@ -75,19 +71,15 @@ void selectionSort(Card *cards, int N) {
     }
 };
 
-void isStable(Card *cards, Card *srccards, int N) {
-    Card *tmpcards = (Card *)malloc(N * sizeof(Card));
-    memcpy(tmpcards, srccards, N * sizeof(Card));
-    bubbleSort(tmpcards, N);
+void isStable(Card *cards, Card *cards2, int N) {
     for (int i = 0; i < N; i++) {
-        if (cards[i].num != tmpcards[i].num || cards[i].mark != tmpcards[i].mark) {
+        // 数字はソートされているからマークだけ比較すれば十分
+        if (cards[i].mark != cards2[i].mark) {
             printf("Not stable\n");
-            free(tmpcards);
             return;
         }
     }
     printf("Stable\n");
-    free(tmpcards);
 };
 
 void swap(Card *a, Card *b) {
