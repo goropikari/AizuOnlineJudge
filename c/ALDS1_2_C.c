@@ -47,7 +47,7 @@ void printArray(Card *cards, int N) {
         printf("%c%d", cards[i].mark, cards[i].num);
     }
     printf("\n");
-};
+}
 
 void bubbleSort(Card *cards, int N) {
     for (int i = 1; i < N; i++) {
@@ -57,7 +57,7 @@ void bubbleSort(Card *cards, int N) {
             }
         }
     }
-};
+}
 
 void selectionSort(Card *cards, int N) {
     for (int i = 0; i < N-1; i++) {
@@ -69,7 +69,7 @@ void selectionSort(Card *cards, int N) {
         }
         swap(&cards[minidx], &cards[i]);
     }
-};
+}
 
 void isStable(Card *cards, Card *cards2, int N) {
     for (int i = 0; i < N; i++) {
@@ -80,7 +80,7 @@ void isStable(Card *cards, Card *cards2, int N) {
         }
     }
     printf("Stable\n");
-};
+}
 
 void swap(Card *a, Card *b) {
     Card c = *a;
