@@ -13,6 +13,7 @@ int main(int argc, char const* argv[])
         scanf("%d", &A[i]);
     }
 
+    printArray(A, N);
     insertSort(A, N);
 
     return 0;
@@ -29,7 +30,6 @@ void insertSort(int *A, int N) {
         A[j+1] = v;
         printArray(A, N);
     }
-    printArray(A, N);
 }
 
 void printArray(int *A, int N) {
