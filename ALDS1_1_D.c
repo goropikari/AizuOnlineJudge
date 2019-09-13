@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int min(int a, int b);
+int max(int a, int b);
+
 int main(int argc, char const* argv[])
 {
     int n;
@@ -12,17 +15,22 @@ int main(int argc, char const* argv[])
         scanf("%d", &arr[i]);
     }
 
-    int ri = arr[0], rj = arr[1];
-    int ans = rj - ri;
+    int ri = arr[0];
+    int ans = arr[1] - ri;
     for (int i = 1; i < n; i++) {
-        if (ans < arr[i] - ri) {
-            ans = arr[i] - ri;
-        } else if (arr[i] < ri){
-            ri = arr[i];
-        }
+        ans = max(ans, arr[i] - ri);
+        ri = min(ri, arr[i]);
     }
     printf("%d\n", ans);
     free(arr);
 
     return 0;
+}
+
+int min(int a, int b) {
+    return a < b ? a : b;
+}
+
+int max(int a, int b) {
+    return a > b ? a : b;
 }
