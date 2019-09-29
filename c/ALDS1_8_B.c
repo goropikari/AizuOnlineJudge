@@ -40,7 +40,7 @@ void insert(int k) {
     }
 }
 
-void find(int k) {
+Node *find(int k) {
     Node *u = root;
     while (u != NIL && u->key != k) {
         if (k < u->key) {
@@ -49,11 +49,7 @@ void find(int k) {
             u = u->right;
         }
     }
-    if (u == NIL) {
-        printf("no\n");
-    } else {
-        printf("yes\n");
-    }
+    return u;
 }
 
 void inorder(Node *u) {
@@ -84,7 +80,11 @@ int main(int argc, char const* argv[])
             insert(x);
         } else if (strcmp(op, "find") == 0) {
             scanf("%d", &x);
-            find(x);
+            if (find(x) == NIL) {
+                printf("no\n");
+            } else {
+                printf("yes\n");
+            }
         } else {
             inorder(root);
             printf("\n");
